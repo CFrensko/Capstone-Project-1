@@ -22,7 +22,10 @@ I noticed that in some of the earlier surveys some of the listing prices were ca
 
 I realized a small number of minimum stays exceeded a year when the mean stay is around 2 days. I got rid of the extreme outlier of a stay of 500 days. Finally to avoid multicollinearity I got rid of the column ‘accommodates’ since it is closely related to the column ‘bedrooms’. This left me with a clean data set of 90,223 rows remaining.
 
-![Clean Data Set](img/Clean_Data_Set.png)
+<p align="center">
+  <img width="460" height="300" src="https://github.com/CFrensko/Capstone-Project-1/blob/master/Clean_Data_Set.png">
+</p>
+
 
 Exploratory Data Analysis:
 
@@ -36,17 +39,16 @@ The root mean squared error (RMSE) value was 51.4111. This shows our model was a
 Next I calculated and plotted the residuals of both the train and test sets to observe the estimates of experimental error obtained by subtracting the observed responses from the predicted responses. The advantage of the fitted vs. residual plot is that the model how it performs on each individual case. Residual plots are a good way to visualize the errors in data. If it is accurate the data should be randomly scattered around line zero. The data showed a linear trend but there were a few points outside of the data. This means the model contains structure, since it is not capturing something. Maybe there is a interaction between 2 variables not considered, or maybe there is measurement of time dependent data.
 I then created a histogram for the residual error of the test set. It was mostly normally distributed and centered around zero.
 I next plotted a probability plot to check the normality of the distribution of the residual errors. The values are ordered and compared to an idealized normal Gaussian distribution. It shows that the residuals are not normal with extreme values at the ends. These values should be removed or another model should be used. These outliers are seen in the upper and lower sides of the quantile plot.
+
 Supervised Learning:
 After linear regression did not have the best performance I decided to apply a variety of supervised regression models including decision tree, random forest, k-nearest neighbors, multi-layer perceptron, gradient boosting, lasso regression, ridge regression and elastic net. This allowed me to immediately determine which model was worth looking into futher.
 The best performing model was random forest with a R^2 value of 68.5% with the similar decision tree model trailing in second with a R^2 value of 64%. The worst performers were lasso and elastic net. The random forest's RMSE value was 42, showing almost a 20% improvement from the linear regression model.
+
 Random Forest Feature Analysis:
 When performing a feature performance analysis on Random forest the top weighted features for determining price included room type being an entire house or appartment at 66%, number of bedrooms at 26%, the neighborhood being near north at 3%, the neighborhood of the loop at 1%, overall satisfaction at almost 1% and reviews at a half percent.
 A few things to consider when building an impurity based ranking model is they are biased towards prefering variables with more categories and act differently when ranking two or more correlated variables. If variables are correlated the model will not have a preference for one over the other. Once it weighs the importance of one, the importance of the other correlated variables is significantly reduced. This is great when we want to use feature selection to reduce overfitting, but when interpretting the data it can lead to incorrectly weighing the importance of variables as strong vs weak predictors.
 Next I calculated and plotted the residuals of both the train and test sets to observe the estimates of experimental error obtained by subtracting the observed responses from the predicted responses. The data was pretty equally distributed over the line zero indicating a good fit but there is still a bit of structure on the ends.
 The histogram of the residuals shows the data is skewing to the right showing the random forest model may be predicting larger prices than are accurate.
+
 Further Analysis:
 To further improve the model hyperparameter tuning should be used.
-In [ ]:
-
-1
-​
